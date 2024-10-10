@@ -34,6 +34,8 @@ with st.sidebar:
     # Initialize or switch conversation based on thread ID
     initialize_conversation(thread_id)
 
+    st.image('src/web/BNM.jpg', use_column_width=True)
+
 st.title("BNM codex Chatbot")
 
 for msg in st.session_state["messages"]:
