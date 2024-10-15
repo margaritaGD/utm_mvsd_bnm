@@ -71,8 +71,12 @@ if prompt := st.chat_input("Type your message"):
     for content in message.content:
         if role == "assistant":
             try:
-                data = json.loads(content.text.value[7:-3])
-                msg = data["title"] + "\n\n" + data["content"]
+                if content.text.value.startswith("```json"):
+                    data = json.loads(content.text.value[7:-3])
+                    msg = data["title"] + "\n\n" + data["content"]
+                else:
+                    data = json.loads(content.text.value)
+                    msg = data["title"] + "\n\n" + data["content"]
             except Exception as e:
                 msg = content.text.value
                 st.chat_message(role).write(msg)
